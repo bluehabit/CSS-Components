@@ -6,6 +6,8 @@ var button = document.getElementById('startButton')
 
 var mouse;
 
+var hoverTint = '#e72a87';
+
 var puzzle = {
     width: null,
     height: null,
@@ -155,25 +157,35 @@ function assemblePuzzle(){
 
 
 function updatePuzzle(e){
-    currentDropPiece = null;
-    console.log('mouse move')
+    puzzle.currentDropPiece = null;
 
     mouse.x = e.clientX;
     mouse.y = e.clientY;
+    //can also use:
+    //mouse.x = this.clientX;
+    //mouse.y = this.clientY;
 
     stage.clearRect(0, 0, puzzle.width, puzzle.height)
 
-    var piece; 
+    // stage.drawImage(puzzleImage, puzzle.currentPiece.sx, puzzle.currentPiece.sy, puzzle.pieceWidth, puzzle.pieceHeight, puzzle.currentPiece.dx, puzzle.currentPiece.dy, puzzle.pieceWidth,  puzzle.pieceHeight);
+    stage.drawImage(puzzleImage, puzzle.currentPiece.sx, puzzle.currentPiece.sy, puzzle.pieceWidth, puzzle.pieceHeight, mouse.x - (puzzle.pieceWidth / 2), mouse.y - (puzzle.pieceHeight / 2), puzzle.pieceWidth,  puzzle.pieceHeight);
+    stage.save();
+    stage.globalAlpha = .4;
+    stage.fillStyle = hoverTint;
+    // stage.fillRect(puzzle.currentDropPiece.sx, puzzle.currentDropPiece.sy, puzzle.peiceWidth, puzzle.pieceHeight)
+    // stage.restore();
+    // stage.strokeRect(puzzle.currentPiece.dx, puzzle.currentPiece.dy, puzzle.pieceWidth, puzzle.pieceHeight)
 
-    // for(var i = 0; i < puzzle.pieces.length; i++){
-    //     piece = pieces[i]
-
-    //     if(piece == )
-    // }
+        // stage.save();
+        // stage.globalAlpha = .4;
+        // stage.fillStyle = PUZZLE_HOVER_TINT;
+        // stage.fillRect(puzzle.currentDropPiece.sx, puzzle.currentDropPiece.sy, puzzle.peiceWidth, puzzle.pieceHeight)
+        // stage.restore();
 }
 
 function pieceDropped(e){
     console.log('mouse up')
+    // puzzle.currentPiece = null;
 }
 
 function shuffleArray(o){
