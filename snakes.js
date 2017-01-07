@@ -1,12 +1,13 @@
-console.log('new version')
-
 var canvas = document.getElementById('myCanvas');
 var stage = canvas.getContext('2d')
 var gameInProgress = false;
 var startGameButton = document.getElementById('startButton')
 
 var mouse;
-var hoverTint = '#e72a87';
+var mouseDown;
+
+var hoverIndex;
+var currentIndex; 
 
 var puzzle = {
     width: null,
@@ -20,7 +21,7 @@ var puzzle = {
     totalPieces: null,
 
     currentPiece: null,
-    currentDropPiece: null
+    hoverCoordinates: null
 }
 
 var puzzleImage = document.createElement('img');
@@ -29,8 +30,8 @@ initPuzzleState();
 
 function initPuzzleState() {
     mouse = { x: 0, y: 0 };
+    flag = false;
     puzzle.currentPiece = null;
-    puzzle.currentDropPiece = null;
     puzzleImage.src = 'toejam.jpg'
     puzzleImage.addEventListener('load', initCanvas);
     startGameButton.addEventListener('click', startNewGame)
@@ -63,9 +64,24 @@ function buildCanvas() {
     canvas.style.border = '1px solid #2a2a2a';
 }
 
+function startNewGame() {
+    puzzle.pieces = [];
+    // gameInProgress = true;
+
+    if(gameInProgress === false ){
+        buildPieces();
+        assemblePuzzle();
+        canvas.addEventListener('click', pieceGrabbed);
+        // canvas.addEventListener('click', swapPieces)
+        // canvas.addEventListener('click', pieceGrabbed);
+        // canvas.addEventListener('mousemove', updatePuzzle);
+        // canvas.addEventListener('mouseup', pieceDropped);
+    }
+}
+
 //generate pieces
 function buildPieces() {
-    console.log('building pieces')
+
     //sx and sy only
     var piece;
 
@@ -76,11 +92,11 @@ function buildPieces() {
         piece = {};
         piece.sx = sxPos;
         piece.sy = syPos;
-        piece.name = i + 1;
+        piece.name = i;
 
         sxPos += puzzle.pieceWidth;
 
-        if (sxPos >= puzzle.width) {
+       if (sxPos >= puzzle.width) {
             sxPos = 0;
             syPos += puzzle.pieceHeight;
         }
@@ -89,7 +105,7 @@ function buildPieces() {
 }
 
 function assemblePuzzle(){
-    console.log('assembling puzzle')
+
     // if(gameInProgress === false){
         puzzle.pieces = shuffleArray(puzzle.pieces);
         //drawing the pieces to the canvass, dx and dy only
@@ -117,78 +133,179 @@ function assemblePuzzle(){
         }
         gameInProgress = true;
     // }
-    canvas.addEventListener('click', pieceGrabbed);
-}
-
-function startNewGame() {
-    puzzle.pieces = [];
-    // gameInProgress = true;
-
-    if(gameInProgress !== true ){
-        buildPieces();
-        assemblePuzzle();
-        canvas.addEventListener('click', pieceGrabbed);
-        // canvas.addEventListener('mousemove', updatePuzzle);
-        // canvas.addEventListener('mouseup', pieceDropped);
-    }
+    // canvas.addEventListener('click', pieceGrabbed);
 }
 
 function pieceGrabbed(e) {
+	//in the if condition below, there is a flag variable
+	//this is important to check becuase if you click where
+	//the hover is, the hover and click become the same piece
+	//that is why the selected piece should only change
+	//on a specific condition
 
-    var selectedPiece;
+	if(flag === false){
+		var selectedPiece;
 
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
+	    mouse.x = e.clientX;
+	    mouse.y = e.clientY;
 
-    console.log('mouseX ' + mouse.x)
-    console.log('mouseY ' + mouse.y)
+	    puzzle.currentPiece = getCoordinates(mouse.x, mouse.y);
 
-    puzzle.currentPiece = getCoordinates(mouse.x, mouse.y);
+	    for (var i = 0; i < puzzle.pieces.length; i++) {
+	        if (puzzle.currentPiece[0] === puzzle.pieces[i].cellX && puzzle.currentPiece[1] === puzzle.pieces[i].cellY) {
+	            selectedPiece = puzzle.pieces[i]
+	            currentIndex = i;
+	            console.log(currentIndex)
+	        }
+	    }
 
-    for (var i = 0; i < puzzle.pieces.length; i++) {
-        if (puzzle.currentPiece[0] === puzzle.pieces[i].cellX && puzzle.currentPiece[1] === puzzle.pieces[i].cellY) {
-            selectedPiece = puzzle.pieces[i]
-        }
-    }
+	    puzzle.currentPiece = selectedPiece;
+	    console.log(puzzle.currentPiece)
 
-    puzzle.currentPiece = selectedPiece;
-    console.log(puzzle.currentPiece)
-
-    canvas.addEventListener('mousemove', updatePuzzle);
+	    if(puzzle.currentPiece !== null){
+	     canvas.addEventListener('mousemove', updatePuzzle);
+	    }
+	}
 }
 
 
 function updatePuzzle(e){
-    puzzle.currentDropPiece = null;
+	flag = true;
 
     mouse.x = e.clientX;
     mouse.y = e.clientY;
-    //can also use:
-    //mouse.x = this.clientX;
-    //mouse.y = this.clientY;
 
-    stage.clearRect(0, 0, puzzle.width, puzzle.height)
+    // stage.clearRect(0, 0, puzzle.width, puzzle.height);
+    // console.log('painting puzle')
 
-    // stage.drawImage(puzzleImage, puzzle.currentPiece.sx, puzzle.currentPiece.sy, puzzle.pieceWidth, puzzle.pieceHeight, puzzle.currentPiece.dx, puzzle.currentPiece.dy, puzzle.pieceWidth,  puzzle.pieceHeight);
-    stage.drawImage(puzzleImage, puzzle.currentPiece.sx, puzzle.currentPiece.sy, puzzle.pieceWidth, puzzle.pieceHeight, mouse.x - (puzzle.pieceWidth / 2), mouse.y - (puzzle.pieceHeight / 2), puzzle.pieceWidth,  puzzle.pieceHeight);
-    stage.save();
-    stage.globalAlpha = .4;
-    stage.fillStyle = hoverTint;
-    // stage.fillRect(puzzle.currentDropPiece.sx, puzzle.currentDropPiece.sy, puzzle.peiceWidth, puzzle.pieceHeight)
-    // stage.restore();
-    // stage.strokeRect(puzzle.currentPiece.dx, puzzle.currentPiece.dy, puzzle.pieceWidth, puzzle.pieceHeight)
+    //replace code with function
+    var dxPos = 0;
+    var dyPos = 0;
 
-        // stage.save();
-        // stage.globalAlpha = .4;
-        // stage.fillStyle = PUZZLE_HOVER_TINT;
-        // stage.fillRect(puzzle.currentDropPiece.sx, puzzle.currentDropPiece.sy, puzzle.peiceWidth, puzzle.pieceHeight)
-        // stage.restore();
-    stage.restore();
-}
+        for(var i = 0; i < puzzle.pieces.length; i++){      
+            puzzle.pieces[i].dx = dxPos;
+            puzzle.pieces[i].dy = dyPos;
 
-function pieceDropped(e) {
-    console.log('mouse up')
-}
+            puzzle.pieces[i].cellX =  Math.floor(puzzle.pieces[i].dx / puzzle.pieceWidth) + 1;
+            puzzle.pieces[i].cellY =  Math.floor(puzzle.pieces[i].dy / puzzle.pieceHeight) + 1;
+
+            stage.drawImage(puzzleImage, puzzle.pieces[i].sx, puzzle.pieces[i].sy, puzzle.pieceWidth, puzzle.pieceHeight, dxPos, dyPos, puzzle.pieceWidth, puzzle.pieceHeight)
+            stage.strokeRect(dxPos, dyPos, puzzle.pieceWidth, puzzle.pieceHeight);
+            
+            dxPos += puzzle.pieceWidth;
+
+            if(dxPos >= puzzle.width){
+                dxPos = 0;
+                dyPos += puzzle.pieceHeight; 
+            }
+        }
+    //    
+
+    ///user selected puzzle piece
+    stage.globalAlpha = .75;
+
+    //experimental: if condition added below
+    // if(puzzle.currentPiece !== null){
+    	//problem: alpha multiplies here on each mousemove
+	    stage.drawImage(puzzleImage, puzzle.currentPiece.sx, puzzle.currentPiece.sy, puzzle.pieceWidth, puzzle.pieceHeight, mouse.x - (puzzle.pieceWidth / 2), mouse.y - (puzzle.pieceHeight / 2), puzzle.pieceWidth,  puzzle.pieceHeight);
+		stage.strokeRect( mouse.x - (puzzle.pieceWidth / 2), mouse.y - (puzzle.pieceHeight / 2), puzzle.pieceWidth, puzzle.pieceHeight);
+	    //applies the stroke where user cursor is
+
+	    puzzle.hoverCoordinates = getCoordinates(mouse.x, mouse.y);
+	    // console.log(puzzle.hoverCoordinates)
+
+	    highlightPiece()
+	    // swapPieces();
+	    // canvas.addEventListener('click', swapPieces)
+    // }
+ }
+
+ function highlightPiece(){
+
+	 var hoverPiece = {};
+	 hoverPiece.cellX = puzzle.hoverCoordinates[0];
+	 hoverPiece.cellY = puzzle.hoverCoordinates[1]; 
+
+ 	for(var i = 0; i < puzzle.pieces.length; i++){
+ 		if(hoverPiece.cellX === puzzle.pieces[i].cellX && hoverPiece.cellY === puzzle.pieces[i].cellY){
+ 			stage.fillStyle = 'blue'
+        	stage.globalAlpha = .4
+        	stage.fillRect(puzzle.pieces[i].dx, puzzle.pieces[i].dy, puzzle.pieceWidth, puzzle.pieceHeight);
+ 			
+ 			hoverIndex = i;
+ 		}
+ 	}
+
+	canvas.addEventListener('click', swapPieces);
+ }
+
+ function swapPieces(e){
+
+ 	var x = currentIndex;
+ 	//0
+ 	var y = hoverIndex;
+ 	//1
+
+ 	var xObject = puzzle.pieces[x]
+ 	//Object {sx: 160, sy: 84, name: 6, dx: 0, dy: 0…}
+
+ 	var yObject = puzzle.pieces[y]
+ 	// Object {sx: 320, sy: 252, name: 15, dx: 160, dy: 0…}
+
+ 	//for this swap function to work the index of the array
+ 	//and the object at the array index must be saved to
+ 	//their own variables
+
+ 	puzzle.pieces[x] = yObject
+ 	puzzle.pieces[y] = xObject
+
+ 	var dxPos = 0;
+    var dyPos = 0;
+
+        for(var i = 0; i < puzzle.pieces.length; i++){      
+
+            puzzle.pieces[i].dx = dxPos;
+            puzzle.pieces[i].dy = dyPos;
+
+            puzzle.pieces[i].cellX =  Math.floor(puzzle.pieces[i].dx / puzzle.pieceWidth) + 1;
+            puzzle.pieces[i].cellY =  Math.floor(puzzle.pieces[i].dy / puzzle.pieceHeight) + 1;
+
+            stage.drawImage(puzzleImage, puzzle.pieces[i].sx, puzzle.pieces[i].sy, puzzle.pieceWidth, puzzle.pieceHeight, dxPos, dyPos, puzzle.pieceWidth, puzzle.pieceHeight)
+            stage.strokeRect(dxPos, dyPos, puzzle.pieceWidth, puzzle.pieceHeight);
+            
+            dxPos += puzzle.pieceWidth;
+
+            if(dxPos >= puzzle.width){
+                dxPos = 0;
+                dyPos += puzzle.pieceHeight; 
+            }
+
+        }
+
+    //halp
+    // puzzle.currentPiece = null;
+    checkWin();
+ }	
+
+function checkWin(){
+	var win = true;
+
+	for(var i = 0; i < puzzle.pieces.length; i++){
+		if(puzzle.pieces[i].name !== i){
+			win = false
+		}
+	}
+	// return win; 
+	
+	if(win){
+		alert('you win');
+	}
+} 
+
+
+// function pieceDropped(e) {
+//     console.log('mouse up')
+// }
 
 function shuffleArray(o) {
     for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
@@ -206,3 +323,23 @@ function getCoordinates(xCor, yCor) {
 
     return newCoord;
 }
+
+// function getIndex(xCor, yCor){
+// 	var i = Math.floor(xCor / puzzle.pieceWidth);
+// 	var j = Math.floor(yCor / puzzle.pieceHeight);
+//         var index = j* puzzle.difficulty + i;
+
+// 	return index;
+// }
+
+// canvas.addEventListener('mousedown', function(e){	
+// 	if(e.type === 'mousedown'){
+// 		console.log('mousedown...')
+// 		//run your mousedown code here
+// 	}
+// });
+
+// canvas.addEventListener('mouseup', function(){
+// 	console.log('mouse up')
+// 	//run your mouseup code here
+// })
