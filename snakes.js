@@ -1,3 +1,10 @@
+//future ideas for improvments
+//-add timer
+//-prompt user and ask if they would like to provide custom url
+//to image
+//-somesort of API integration that takes a random instagram
+//image or something
+
 var canvas = document.getElementById('myCanvas');
 var stage = canvas.getContext('2d')
 var gameInProgress;
