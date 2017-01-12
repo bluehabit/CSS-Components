@@ -6,10 +6,10 @@
 //image or something
 
 var canvas = document.getElementById('myCanvas');
-var stage = canvas.getContext('2d')
+var stage = canvas.getContext('2d');
 var gameInProgress;
 //move gameInProgress to Init? 
-var startGameButton = document.getElementById('startButton')
+var startGameButton = document.getElementById('startButton');
 
 var mouse;
 var mouseDown;
@@ -45,15 +45,15 @@ function initPuzzleState() {
     gameInProgress = false;
     puzzle.currentPiece = null;
 
-    puzzleImage.src = 'toejam.jpg'
+    puzzleImage.src = 'toejam.jpg';
     puzzleImage.addEventListener('load', initCanvas);
 
-    startGameButton.innerHTML = 'Start'
+    startGameButton.innerHTML = 'Start';
 
     if(!gameInProgress){
-    	startGameButton.addEventListener('click', startNewGame)
+    	startGameButton.addEventListener('click', startNewGame);
     } else {
- 		initPuzzleState()
+ 		initPuzzleState();
     }
 }
 
@@ -91,7 +91,7 @@ function startNewGame() {
     buildPieces();
     assemblePuzzle();
 
-	startGameButton.innerHTML = 're-shuffle?'
+	startGameButton.innerHTML = 're-shuffle?';
     gameInProgress = true;
 
     // if(!puzzle.currentPiece){
@@ -107,10 +107,10 @@ function drawPuzzle(){
 
 }
 
-//generate pieces
+//generate pieces inside puzzle.pieces 
 function buildPieces() {
 
-    //sx and sy only
+    //sx and sy only (source image)
     var piece;
 
     var sxPos = 0;
@@ -148,7 +148,7 @@ function assemblePuzzle(){
             puzzle.pieces[i].cellX =  Math.floor(puzzle.pieces[i].dx / puzzle.pieceWidth) + 1;
             puzzle.pieces[i].cellY =  Math.floor(puzzle.pieces[i].dy / puzzle.pieceHeight) + 1;
 
-            stage.drawImage(puzzleImage, puzzle.pieces[i].sx, puzzle.pieces[i].sy, puzzle.pieceWidth, puzzle.pieceHeight, dxPos, dyPos, puzzle.pieceWidth, puzzle.pieceHeight)
+            stage.drawImage(puzzleImage, puzzle.pieces[i].sx, puzzle.pieces[i].sy, puzzle.pieceWidth, puzzle.pieceHeight, dxPos, dyPos, puzzle.pieceWidth, puzzle.pieceHeight);
             stage.strokeRect(dxPos, dyPos, puzzle.pieceWidth, puzzle.pieceHeight);
             
             dxPos += puzzle.pieceWidth;
@@ -169,10 +169,7 @@ function toggleState(){
 	if(!puzzle.currentPiece){
     	canvas.addEventListener('click', pieceGrabbed);  
     } else {
-    	canvas.removeEventListener('click',
-        pieceGrabbed
-        // false
-   		 );
+    	canvas.removeEventListener('click',pieceGrabbed);
     }
 }
 
@@ -195,15 +192,15 @@ function pieceGrabbed(e) {
 	    //this part of the loop is only logging onc
 	    for (var i = 0; i < puzzle.pieces.length; i++) {
 	        if (puzzle.currentPiece[0] === puzzle.pieces[i].cellX && puzzle.currentPiece[1] === puzzle.pieces[i].cellY) {
-	            selectedPiece = puzzle.pieces[i]
+	            selectedPiece = puzzle.pieces[i];
 	            currentIndex = i;
 	            console.log(currentIndex)
 	        }
 	    }
 
 	    puzzle.currentPiece = selectedPiece;
-	    console.log(puzzle.currentPiece)
-	    console.log(' ^ puzzle.currentPiece')
+	    console.log(puzzle.currentPiece);
+	    console.log(' ^ puzzle.currentPiece');
 
 	    if(puzzle.currentPiece){
 	     canvas.addEventListener('mousemove', updatePuzzle);
@@ -219,8 +216,6 @@ function updatePuzzle(e){
 
     mouse.x = e.clientX;
     mouse.y = e.clientY;
-    // stage.clearRect(0, 0, puzzle.width, puzzle.height);
-    // console.log('painting puzle')
 
     //replace later with function call 
     var dxPos = 0;
@@ -233,7 +228,7 @@ function updatePuzzle(e){
             puzzle.pieces[i].cellX =  Math.floor(puzzle.pieces[i].dx / puzzle.pieceWidth) + 1;
             puzzle.pieces[i].cellY =  Math.floor(puzzle.pieces[i].dy / puzzle.pieceHeight) + 1;
 
-            stage.drawImage(puzzleImage, puzzle.pieces[i].sx, puzzle.pieces[i].sy, puzzle.pieceWidth, puzzle.pieceHeight, dxPos, dyPos, puzzle.pieceWidth, puzzle.pieceHeight)
+            stage.drawImage(puzzleImage, puzzle.pieces[i].sx, puzzle.pieces[i].sy, puzzle.pieceWidth, puzzle.pieceHeight, dxPos, dyPos, puzzle.pieceWidth, puzzle.pieceHeight);
             stage.strokeRect(dxPos, dyPos, puzzle.pieceWidth, puzzle.pieceHeight);
             
             dxPos += puzzle.pieceWidth;
@@ -273,8 +268,8 @@ function updatePuzzle(e){
 
  	for(var i = 0; i < puzzle.pieces.length; i++){
  		if(hoverPiece.cellX === puzzle.pieces[i].cellX && hoverPiece.cellY === puzzle.pieces[i].cellY){
- 			stage.fillStyle = 'blue'
-        	stage.globalAlpha = .4
+ 			stage.fillStyle = 'blue';
+        	stage.globalAlpha = .4;
         	stage.fillRect(puzzle.pieces[i].dx, puzzle.pieces[i].dy, puzzle.pieceWidth, puzzle.pieceHeight);
  			
  			hoverIndex = i;
@@ -298,18 +293,18 @@ function updatePuzzle(e){
  	
  	// console.log(currentIndex + ' ' + hoverIndex)
 
- 	var xObject = puzzle.pieces[x]
+ 	var xObject = puzzle.pieces[x];
  	//Object {sx: 160, sy: 84, name: 6, dx: 0, dy: 0…}
 
- 	var yObject = puzzle.pieces[y]
+ 	var yObject = puzzle.pieces[y];
  	// Object {sx: 320, sy: 252, name: 15, dx: 160, dy: 0…}
 
  	//for this swap function to work the index of the array
  	//and the object at the array index must be saved to
  	//their own variables
 
- 	puzzle.pieces[x] = yObject
- 	puzzle.pieces[y] = xObject
+ 	puzzle.pieces[x] = yObject;
+ 	puzzle.pieces[y] = xObject;
 
  	var dxPos = 0;
     var dyPos = 0;
@@ -322,7 +317,7 @@ function updatePuzzle(e){
             puzzle.pieces[i].cellX =  Math.floor(puzzle.pieces[i].dx / puzzle.pieceWidth) + 1;
             puzzle.pieces[i].cellY =  Math.floor(puzzle.pieces[i].dy / puzzle.pieceHeight) + 1;
 
-            stage.drawImage(puzzleImage, puzzle.pieces[i].sx, puzzle.pieces[i].sy, puzzle.pieceWidth, puzzle.pieceHeight, dxPos, dyPos, puzzle.pieceWidth, puzzle.pieceHeight)
+            stage.drawImage(puzzleImage, puzzle.pieces[i].sx, puzzle.pieces[i].sy, puzzle.pieceWidth, puzzle.pieceHeight, dxPos, dyPos, puzzle.pieceWidth, puzzle.pieceHeight);
             stage.strokeRect(dxPos, dyPos, puzzle.pieceWidth, puzzle.pieceHeight);
             
             dxPos += puzzle.pieceWidth;
@@ -345,17 +340,17 @@ function checkWin(){
 
 	for(var i = 0; i < puzzle.pieces.length; i++){
 		if(puzzle.pieces[i].name !== i){
-			win = false
+			win = false;
 		}
 	}
 	
 	if(win){
 		alert('you win');
-		startGameButton.innerHTML = 'Start new Game?'
+		startGameButton.innerHTML = 'Start new Game?';
 	}
 
 	puzzle.currentPiece = null;
-    toggleState()
+    toggleState();
 
 } 
 
@@ -365,7 +360,7 @@ function shuffleArray(o) {
 }
 
 function getCoordinates(xCor, yCor) {
-    var newCoord = []
+    var newCoord = [];
 
     var newX = Math.floor(xCor / puzzle.pieceWidth) + 1; //160
     newCoord.push(newX)
