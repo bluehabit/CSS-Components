@@ -7,7 +7,7 @@ var startGameButton = document.getElementById('startButton')
 var mouse;
 var mouseDown;
 
-var flag;
+var userPieceSameAsHover;
 
 //This logs which index we are currently at
 var hoverIndex;
@@ -34,13 +34,20 @@ initPuzzleState();
 
 function initPuzzleState() {
     mouse = { x: 0, y: 0 };
-    flag = false;
+    userPieceSameAsHover = false;
     gameInProgress = false;
     puzzle.currentPiece = null;
 
     puzzleImage.src = 'toejam.jpg'
     puzzleImage.addEventListener('load', initCanvas);
-    startGameButton.addEventListener('click', startNewGame)
+
+    startGameButton.innerHTML = 'Start'
+
+    if(!gameInProgress){
+    	startGameButton.addEventListener('click', startNewGame)
+    } else {
+ 		initPuzzleState()
+    }
 }
 
 function initCanvas() {
@@ -73,20 +80,20 @@ function buildCanvas() {
 
 function startNewGame() {
     puzzle.pieces = [];
-    // gameInProgress = true;
 
-    if(!gameInProgress){
-        buildPieces();
-        assemblePuzzle();
+    buildPieces();
+    assemblePuzzle();
 
-        // if(!puzzle.currentPiece){
-        // 	 canvas.addEventListener('click', pieceGrabbed);
-        // }
-        // canvas.addEventListener('click', swapPieces)
-        // canvas.addEventListener('click', pieceGrabbed);
-        // canvas.addEventListener('mousemove', updatePuzzle);
-        // canvas.addEventListener('mouseup', pieceDropped);
-    }
+	startGameButton.innerHTML = 're-shuffle?'
+    gameInProgress = true;
+
+    // if(!puzzle.currentPiece){
+    // 	 canvas.addEventListener('click', pieceGrabbed);
+    // }
+    // canvas.addEventListener('click', swapPieces)
+    // canvas.addEventListener('click', pieceGrabbed);
+    // canvas.addEventListener('mousemove', updatePuzzle);
+    // canvas.addEventListener('mouseup', pieceDropped);
 }
 
 function drawPuzzle(){
@@ -163,13 +170,13 @@ function toggleState(){
 }
 
 function pieceGrabbed(e) {
-	//in the if condition below, there is a flag variable
-	//this is important to check becuase if you click where
+	//in the if condition below, the userPieceSameAsHover is a flag 
+	//variable this is important to check becuase if you click where
 	//the hover is, the hover and click become the same piece
 	//that is why the selected piece should only change
 	//on a specific condition
 
-	if(!flag){
+	if(!userPieceSameAsHover){
 	// if(puzzle.currentPiece === null){
 		var selectedPiece;
 
@@ -337,6 +344,7 @@ function checkWin(){
 	
 	if(win){
 		alert('you win');
+		startGameButton.innerHTML = 'Start new Game?'
 	}
 
 	puzzle.currentPiece = null;
