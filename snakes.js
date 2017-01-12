@@ -1,11 +1,15 @@
 var canvas = document.getElementById('myCanvas');
 var stage = canvas.getContext('2d')
-var gameInProgress = false;
+var gameInProgress;
+//move gameInProgress to Init? 
 var startGameButton = document.getElementById('startButton')
 
 var mouse;
 var mouseDown;
 
+var flag;
+
+//This logs which index we are currently at
 var hoverIndex;
 var currentIndex; 
 
@@ -31,7 +35,9 @@ initPuzzleState();
 function initPuzzleState() {
     mouse = { x: 0, y: 0 };
     flag = false;
+    gameInProgress = false;
     puzzle.currentPiece = null;
+
     puzzleImage.src = 'toejam.jpg'
     puzzleImage.addEventListener('load', initCanvas);
     startGameButton.addEventListener('click', startNewGame)
@@ -64,19 +70,27 @@ function buildCanvas() {
     canvas.style.border = '1px solid #2a2a2a';
 }
 
+
 function startNewGame() {
     puzzle.pieces = [];
     // gameInProgress = true;
 
-    if(gameInProgress === false ){
+    if(!gameInProgress){
         buildPieces();
         assemblePuzzle();
-        canvas.addEventListener('click', pieceGrabbed);
+
+        // if(!puzzle.currentPiece){
+        // 	 canvas.addEventListener('click', pieceGrabbed);
+        // }
         // canvas.addEventListener('click', swapPieces)
         // canvas.addEventListener('click', pieceGrabbed);
         // canvas.addEventListener('mousemove', updatePuzzle);
         // canvas.addEventListener('mouseup', pieceDropped);
     }
+}
+
+function drawPuzzle(){
+
 }
 
 //generate pieces
@@ -132,8 +146,20 @@ function assemblePuzzle(){
 
         }
         gameInProgress = true;
-    // }
-    // canvas.addEventListener('click', pieceGrabbed);
+    
+  	canvas.addEventListener('click', toggleState);
+  	canvas.addEventListener('click', pieceGrabbed);
+}
+
+function toggleState(){
+	if(!puzzle.currentPiece){
+    	canvas.addEventListener('click', pieceGrabbed);  
+    } else {
+    	canvas.removeEventListener('click',
+        pieceGrabbed
+        // false
+   		 );
+    }
 }
 
 function pieceGrabbed(e) {
@@ -143,7 +169,8 @@ function pieceGrabbed(e) {
 	//that is why the selected piece should only change
 	//on a specific condition
 
-	if(flag === false){
+	if(!flag){
+	// if(puzzle.currentPiece === null){
 		var selectedPiece;
 
 	    mouse.x = e.clientX;
@@ -151,6 +178,7 @@ function pieceGrabbed(e) {
 
 	    puzzle.currentPiece = getCoordinates(mouse.x, mouse.y);
 
+	    //this part of the loop is only logging onc
 	    for (var i = 0; i < puzzle.pieces.length; i++) {
 	        if (puzzle.currentPiece[0] === puzzle.pieces[i].cellX && puzzle.currentPiece[1] === puzzle.pieces[i].cellY) {
 	            selectedPiece = puzzle.pieces[i]
@@ -161,24 +189,26 @@ function pieceGrabbed(e) {
 
 	    puzzle.currentPiece = selectedPiece;
 	    console.log(puzzle.currentPiece)
+	    console.log(' ^ puzzle.currentPiece')
 
-	    if(puzzle.currentPiece !== null){
+	    if(puzzle.currentPiece){
 	     canvas.addEventListener('mousemove', updatePuzzle);
+	     canvas.addEventListener('click', swapPieces);
+	    } else {
+	    	return
 	    }
-	}
+	// }
+	}		
 }
 
-
 function updatePuzzle(e){
-	flag = true;
 
     mouse.x = e.clientX;
     mouse.y = e.clientY;
-
     // stage.clearRect(0, 0, puzzle.width, puzzle.height);
     // console.log('painting puzle')
 
-    //replace code with function
+    //replace later with function call 
     var dxPos = 0;
     var dyPos = 0;
 
@@ -201,23 +231,24 @@ function updatePuzzle(e){
         }
     //    
 
+    ///////
+    //draw piece at users mouse
+
     ///user selected puzzle piece
-    stage.globalAlpha = .75;
 
-    //experimental: if condition added below
-    // if(puzzle.currentPiece !== null){
-    	//problem: alpha multiplies here on each mousemove
-	    stage.drawImage(puzzleImage, puzzle.currentPiece.sx, puzzle.currentPiece.sy, puzzle.pieceWidth, puzzle.pieceHeight, mouse.x - (puzzle.pieceWidth / 2), mouse.y - (puzzle.pieceHeight / 2), puzzle.pieceWidth,  puzzle.pieceHeight);
+    if(puzzle.currentPiece){
+	   	stage.globalAlpha = .75;
+
+		stage.drawImage(puzzleImage, puzzle.currentPiece.sx, puzzle.currentPiece.sy, puzzle.pieceWidth, puzzle.pieceHeight, mouse.x - (puzzle.pieceWidth / 2), mouse.y - (puzzle.pieceHeight / 2), puzzle.pieceWidth,  puzzle.pieceHeight);
 		stage.strokeRect( mouse.x - (puzzle.pieceWidth / 2), mouse.y - (puzzle.pieceHeight / 2), puzzle.pieceWidth, puzzle.pieceHeight);
-	    //applies the stroke where user cursor is
 
-	    puzzle.hoverCoordinates = getCoordinates(mouse.x, mouse.y);
-	    // console.log(puzzle.hoverCoordinates)
+		puzzle.hoverCoordinates = getCoordinates(mouse.x, mouse.y);
+		  
 
-	    highlightPiece()
-	    // swapPieces();
-	    // canvas.addEventListener('click', swapPieces)
-    // }
+		highlightPiece()
+    } else {
+    	return
+    }
  }
 
  function highlightPiece(){
@@ -235,16 +266,23 @@ function updatePuzzle(e){
  			hoverIndex = i;
  		}
  	}
-
-	canvas.addEventListener('click', swapPieces);
  }
 
  function swapPieces(e){
+
+ 	//very important piece below
+ 	//checks to make sure that the user has the current piece
+ 	//before redrawing the board, this lead to quite a large
+ 	//headache I had to fix 
+
+ 	if(puzzle.currentPiece){
 
  	var x = currentIndex;
  	//0
  	var y = hoverIndex;
  	//1
+ 	
+ 	// console.log(currentIndex + ' ' + hoverIndex)
 
  	var xObject = puzzle.pieces[x]
  	//Object {sx: 160, sy: 84, name: 6, dx: 0, dy: 0…}
@@ -282,9 +320,10 @@ function updatePuzzle(e){
 
         }
 
-    //halp
     // puzzle.currentPiece = null;
     checkWin();
+
+ 	}
  }	
 
 function checkWin(){
@@ -295,17 +334,15 @@ function checkWin(){
 			win = false
 		}
 	}
-	// return win; 
 	
 	if(win){
 		alert('you win');
 	}
+
+	puzzle.currentPiece = null;
+    toggleState()
+
 } 
-
-
-// function pieceDropped(e) {
-//     console.log('mouse up')
-// }
 
 function shuffleArray(o) {
     for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
@@ -324,22 +361,6 @@ function getCoordinates(xCor, yCor) {
     return newCoord;
 }
 
-// function getIndex(xCor, yCor){
-// 	var i = Math.floor(xCor / puzzle.pieceWidth);
-// 	var j = Math.floor(yCor / puzzle.pieceHeight);
-//         var index = j* puzzle.difficulty + i;
 
-// 	return index;
-// }
 
-// canvas.addEventListener('mousedown', function(e){	
-// 	if(e.type === 'mousedown'){
-// 		console.log('mousedown...')
-// 		//run your mousedown code here
-// 	}
-// });
 
-// canvas.addEventListener('mouseup', function(){
-// 	console.log('mouse up')
-// 	//run your mouseup code here
-// })
