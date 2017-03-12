@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CSS Practice</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+</head>
+<body>
+
+<input type="radio" name="group1" id='header1'>
+<label for='header1'>goat</label>
+
+<input type="radio" name="group1" id='header2'>
+<label for='header2'>fish</label>
+
+<div class='item'>
+<span class='circle'>
+</div>
+
+<div class='item'>
+<span class='circle2'>
+</div>
+
+
+<style>
+
+.item {
+	background-color: blue;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+span.circle {
+	background-color: red;
+	padding: 8px;
+	border-radius: 50%;
+	transition: all .5s ease;
+	display: inline-block;
+}
+
+span.circle2 {
+	background-color: green;
+	padding: 8px;
+	border-radius: 50%;
+	transition: all 1.5s ease;
+	display: inline-block;
+}
+
+.item:hover span {
+	background-color: orange;
+	transform: translateX(300px);
+}
+
+</style>
+
+<script type="text/javascript" src='snakes.js' ></script>
+</body>
+</html>
+
