@@ -1,0 +1,111 @@
+<div class="buttons">
+  <a class="btn" href="#alert1">Open alert with 1 button</a>
+  <a class="btn" href="#alert2">Open alert with 2 buttons</a>
+</div>
+
+<div id="alert1">
+  <div class="alert-box">
+    <div class="alert-message">
+      This alert message is visible, because the button targets this alert box with an anchor link.
+    </div><!-- .alert-message -->
+    <div class="alert-buttons">
+      <a href="#">Ok</a>
+    </div><!-- .alert-buttons -->
+  </div><!-- .alert-box -->
+</div><!-- #alert1 -->
+
+<div id="alert2">
+  <div class="alert-box">
+    <div class="alert-message">
+      With the :target preselector, this alert box can be switched from hidden to visible.
+    </div><!-- .alert-message -->
+    <div class="alert-buttons">
+      <a href="#">Cancel</a>
+      <a href="#">Ok</a>
+    </div><!-- .alert-buttons -->
+  </div><!-- .alert-box -->
+</div><!-- #alert2 -->
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13pt;
+  padding: 0;
+  margin: 0;
+}
+
+#alert1, #alert2 {
+  background-color: rgba(0,0,0,0.7);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+  z-index: 999;
+}
+
+#alert1:target, #alert2:target {
+  visibility: visible;
+}
+
+.alert-box {
+  background-color: #fff;
+  border-radius: 10px;
+  color: #404040;
+  left: 50%;
+  min-width: 300px;
+  position: absolute;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+}
+.alert-message {
+  line-height: 1.4;
+  padding: 30px;
+  width: 100%;
+}
+.alert-buttons {
+  border-top: thin solid #ddd;
+  text-align: center;
+  width: 100%;
+}
+.alert-buttons a {
+  border-right: thin solid #ddd;
+  color: #404040;
+  display: inline-block;
+  line-height: 40px;
+  text-decoration: none;
+  width: 49%;
+}
+.alert-buttons a:last-of-type {
+  border-right: none;
+}
+.alert-buttons a:hover {
+  color: #358cc6;
+}
+
+
+.buttons {
+  position: absolute;
+  top: calc(50% - 20px);
+  width: 100%;
+  text-align: center;
+}
+
+.btn {
+  background-color: #48649F;
+  border-radius: 5px;
+  border-bottom: 4px solid #3c5587;
+  color: #fff;
+  padding: 15px 20px;
+  margin: 0 10px;
+  text-decoration: none;
+}
+.btn:visited, .btn:focus {
+  color: #fff;
+}
+</style>
