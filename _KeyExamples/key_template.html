@@ -1,0 +1,35 @@
+<div>
+	<input type="radio" id="item1" name="tab"> 
+	<label for="item1">item1</label> 
+</div>
+
+<div>
+	<input type="radio" id="item2" name="tab"> 
+	<label for="item2">item2</label> 
+</div>
+
+<div>
+	<input type="radio" id="item3" name="tab"> 
+	<label for="item3">item3</label> 
+</div>
+
+
+<style>
+/*input[type=radio] + label {
+  color: #ccc;
+  font-style: italic;
+} 
+input[type=radio]:checked + label {
+  color: #f00;
+  font-style: normal;
+} */
+
+input[type=radio] ~ label {
+  color: #ccc;
+  font-style: italic;
+} 
+input[type=radio]:checked ~ label {
+  color: #f00;
+  font-style: normal;
+} 
+</style>
