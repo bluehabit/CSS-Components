@@ -16,3 +16,24 @@ The glue that holds all this together.
 ![demo3](http://imgur.com/iCKGZ4Y.gif)
 
 Sligt modification of the original template that forms the basis of making an accordion, allows content to be hidden or visible.
+
+
+## Id_Checked
+
+Very important, instead of doing 
+
+```
+input[type=radio]:checked + label {
+  color: red;
+} 
+```
+
+Can use the class/ID selectors with it! For example:
+
+```
+#kitchen:checked + label {
+	color: blue;
+}
+```
+
+![demo4](http://imgur.com/jkazVuH)
