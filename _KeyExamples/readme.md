@@ -3,7 +3,6 @@
 
 ![demo](http://i.imgur.com/fp6KIwK.gif)
 
-
 This demo is a key to understanding the concepts to do CSS only animations relying on checkboxes or radio options to register a users click. 
 
 ## Key Template
@@ -11,3 +10,9 @@ This demo is a key to understanding the concepts to do CSS only animations relyi
 ![demo2](http://imgur.com/dPgtIuc.gif)
 
 The glue that holds all this together. 
+
+## Key Template 2
+
+![demo3](http://imgur.com/iCKGZ4Y.gif)
+
+Sligt modification of the original template that forms the basis of making an accordion, allows content to be hidden or visible.
