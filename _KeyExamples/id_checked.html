@@ -1,0 +1,43 @@
+
+<div>
+	<input type="radio" id='furniture' name='tab'>
+	<label for='furniture'>Furniture</label>
+</div>
+
+
+<div>
+	<input type="radio" id='kitchen' name='tab'>
+	<label for='kitchen'>Kitchen</label>
+</div>
+
+<div>
+	<input type="radio" id='homedecor' name='tab'>
+	<label for='homedecor'>HomeDecor</label>
+</div>
+
+<style>
+
+input {
+	margin-bottom: 15px;
+}
+
+input[type=radio] + label {
+  color: #ccc;
+  font-style: italic;
+  font-size: 1.2em;
+} 
+
+#furniture:checked + label {
+	color: red;
+}
+
+#kitchen:checked + label {
+	color: blue;
+}
+
+#homedecor:checked + label {
+	color: purple;
+}
+
+</style>
+
