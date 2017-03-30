@@ -9,3 +9,5 @@ This demo is a key to understanding the concepts to do CSS only animations relyi
 ## Key Template
 
 ![demo2](http://imgur.com/dPgtIuc.gif)
+
+The glue that holds all this together. 
