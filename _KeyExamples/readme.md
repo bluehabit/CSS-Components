@@ -36,4 +36,4 @@ Can use the class/ID selectors with it! For example:
 }
 ```
 
-![demo4](http://imgur.com/jkazVuH)
+![demo4](http://imgur.com/jkazVuH.gif)
