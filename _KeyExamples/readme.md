@@ -19,6 +19,7 @@ Sligt modification of the original template that forms the basis of making an ac
 
 
 ## Id_Checked
+![demo4](http://imgur.com/jkazVuH.gif)
 
 Very important, instead of doing 
 
@@ -36,4 +37,4 @@ Can use the class/ID selectors with it! For example:
 }
 ```
 
-![demo4](http://imgur.com/jkazVuH.gif)
+
