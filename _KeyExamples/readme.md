@@ -41,4 +41,4 @@ Can use the class/ID selectors with it! For example:
 
 ![demo5](http://imgur.com/44ZhkpA.gif)
 
-
+More examples
