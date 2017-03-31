@@ -46,6 +46,6 @@ More examples
 
 ## Tabs Component Basics
 
-![demo6](http://imgur.com/BLnloWc.gif)
+![demo6](http://imgur.com/jOD2bd5.gif)
 
 The basic structure for creating a tabs component
