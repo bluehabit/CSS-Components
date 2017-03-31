@@ -42,3 +42,10 @@ Can use the class/ID selectors with it! For example:
 ![demo5](http://imgur.com/44ZhkpA.gif)
 
 More examples
+
+
+## Tabs Component Basics
+
+![demo6](http://imgur.com/BLnloWc.gif)
+
+The basic structure for creating a tabs component
