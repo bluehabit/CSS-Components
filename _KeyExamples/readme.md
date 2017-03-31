@@ -37,7 +37,8 @@ Can use the class/ID selectors with it! For example:
 }
 ```
 
-##ID_checked 2
+## ID_checked 2
+
 ![demo5](http://imgur.com/44ZhkpA.gif)
 
 
