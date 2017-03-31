@@ -1,0 +1,68 @@
+<input type="radio" name="tabs" id='furniture'>
+<label for='furniture'>furniture</label>
+
+<input type="radio" name="tabs" id='kitchen'>
+<label for='kitchen'>kitchen</label>
+
+<input type="radio" name="tabs" id='HomeDecor'>
+<label for='HomeDecor'>HomeDecor</label>
+
+<div class='content'>
+	<div id='content1'>
+		<p>Hey Furniture!</p>
+	</div>
+
+	<div id='content2'>
+		<p>Hey Kitchen!</p>
+	</div>
+
+	<div id='content3'>
+		<p>Hey HomeDecor!</p>
+	</div>
+</div>
+
+
+<style>
+
+	label {
+		color: gray;
+		font-style: italic;
+	}
+
+/*	input[type=radio]:checked + label {
+		color: red;
+		text-decoration: line-through;
+	}*/
+
+
+	#HomeDecor:checked + label{
+		color: green;
+		text-decoration: line-through;
+	}
+
+	#furniture:checked + label{
+		color: red;
+		text-decoration: line-through;
+	}
+
+	#kitchen:checked + label{
+		color: purple;
+		text-decoration: line-through;
+	}
+
+	#furniture:checked ~ .content #content1 {
+		font-size: 1.5em;
+		color: red;
+	}
+
+	#kitchen:checked ~ .content #content2 {
+		font-size: 1.5em;
+		color: blue;
+	}
+
+	#HomeDecor:checked ~ .content #content3 {
+		font-size: 1.5em;
+		color: green;
+	}
+
+</style>
