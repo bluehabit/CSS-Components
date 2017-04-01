@@ -69,4 +69,7 @@ If you try to do this markup `.content{display:none}` it will prevent the indivi
 ![demo9](http://imgur.com/y8Il3Wc.png)
 
 
+#### Refactoring Original Code
+
+[!demo10](http://imgur.com/almZJBj.png)
 
