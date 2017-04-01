@@ -49,3 +49,9 @@ More examples
 ![demo6](http://imgur.com/jOD2bd5.gif)
 
 The basic structure for creating a tabs component
+
+## Tabs Refined
+
+![demo7](http://imgur.com/eVjTDPc.gif)
+
+Styling added, refined code most notably this section here:
