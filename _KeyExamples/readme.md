@@ -71,5 +71,5 @@ If you try to do this markup `.content{display:none}` it will prevent the indivi
 
 #### Refactoring Original Code
 
-[!demo10](http://imgur.com/almZJBj.png)
+![demo10](http://imgur.com/almZJBj.png)
 
