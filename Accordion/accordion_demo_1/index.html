@@ -12,57 +12,38 @@
 
 <div class='main'>
 
-<div class='group'>
+
 <div class='container'>
-<input type="radio" name="accordion" id='header1'> 
-<label for='header1' class='expand'>Section 1
-</label>
+    <input type="radio" name="accordion" id='header1'> 
+    <label for='header1' class='expand'>Section 1</label>
 
-<div class='content group'>
+    <div class='content group'>
 
-<img class='group' src='https://lh3.googleusercontent.com/Ag5KuMjwx6xsMDTxPsl-vlOlTELfOfIvibnmm00hXY9sT3F9HG7Uqp2jRlU=-w800-h533' height='128px' width='128px'>
+    <img class='group' src='https://lh3.googleusercontent.com/Ag5KuMjwx6xsMDTxPsl-vlOlTELfOfIvibnmm00hXY9sT3F9HG7Uqp2jRlU=-w800-h533' height='128px' width='128px'>
 
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</div>
-</div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+    </div>
 </div>
 
 <div class='container'>
-<input type="radio" name="accordion" id='header2'>
-<label for='header2' class='expand'>Section 2</label>
-<div class='content group'>
+    <input type="radio" name="accordion" id='header2'>
+    <label for='header2' class='expand'>Section 2</label>
+    <div class='content group'>
+    <img class='group' src='https://eos.org/wp-content/uploads/2016/09/what-is-magma-lava-forms-ropey-pahoehoe.jpg' height='128px' width='128px'>
 
-<img class='group' src='https://eos.org/wp-content/uploads/2016/09/what-is-magma-lava-forms-ropey-pahoehoe.jpg' height='128px' width='128px'>
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+    </div>
 </div>
 
 <div class='container'>
-<input type="radio" name="accordion" id='header3'>
-<label for='header3' class='expand'>Section 3</label>
-<div class='content group'>
+    <input type="radio" name="accordion" id='header3'>
+    <label for='header3' class='expand'>Section 3</label>
+    <div class='content group'>
 
-<img class='group' src='http://www.pbs.org/wgbh/nova/volcanocity/images/anat-magma-l.jpg' height='128px' width='128px'>
+    <img class='group' src='http://www.pbs.org/wgbh/nova/volcanocity/images/anat-magma-l.jpg' height='128px' width='128px'>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.e
-</div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+    </div>
 </div>
 
 
@@ -75,25 +56,20 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.e
 body {
    font-family: 'Karla', sans-serif;
 }
-
 .container {
     margin-bottom: 2px;
 }
-
 img {
 /*    visibility: hidden;*/
     border-radius: 15px;
     float: left;
     padding: 7px;
 }
-
-
 .main {
     width: 25%;
     margin: 0 auto;
     margin-top: 120px;
 }
-
 .expand {
     background-color: #212121;
     padding: 15px;
@@ -102,7 +78,6 @@ img {
     display: block;
     height: 15px;
 }
-
 .content {
     padding: 15px;
     border: 1px solid black;
@@ -114,7 +89,6 @@ img {
     height: 0;
     padding-top: 35px;
 }
-
 label {
     color: gray;
     text-transform: uppercase;
@@ -122,20 +96,16 @@ label {
     font-size: 1.15em;
     position: relative;
 }
-
 label:after {
     content: url('images/angle.png');
     float: right;
 }
-
-
 
 input:checked + label {
     color: white;
     transition: all .25s ease-in;
 }
 /*highlights section headers white*/
-
 input:checked + label + div {
     color: black;
     transition: color 1s ease-in-out;
@@ -146,31 +116,21 @@ input:checked + label + div {
     transition: height .5s ease;
 }
 
-input:checked + label + div + img {
-    border: 5px solid red;
-}
-
 /*makes section paragraph contents visible*/
-
-
 input[type=radio] {
     display: none;
 }
 /*hides radio buttons*/ 
-
 .group {
   clear: both;
 }
-
 /*///////////////////////////////////
 ////=Media Queries
 ////////////////////////////////////*/
-
 @media only screen and (max-width : 1210px){
   .main{
     width: 55%;   
 }
-
 input:checked + label + div {
     color: black;
     transition: color 1s ease-in-out;
@@ -180,13 +140,10 @@ input:checked + label + div {
     height: 200px;
     transition: height .5s ease;
 }
-
-
 @media only screen and (max-width : 830px){
   .main{
     width: 100%;
 }
-
 input:checked + label + div {
     color: black;
     transition: color 1s ease-in-out;
