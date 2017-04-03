@@ -1,2 +1,2 @@
 # Demo
-![demolift](http://imgur.com/NXWb2vd.gif)
+![demolift](http://imgur.com/nElYKoq.gif)
