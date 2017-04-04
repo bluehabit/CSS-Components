@@ -1,0 +1,38 @@
+<ul class='social'>
+	<li>
+		<img src="facebook.png">
+	</li>
+	<li>
+		<img src="github1.png">
+	</li>
+	<li>
+		<img src="linkedin.png">
+	</li>
+	<li>
+		<img src="twitter.png">
+	</li>
+</ul>
+
+<style>
+	
+	.social{
+		list-style: none;
+	}
+
+	ul li {
+		display: inline-block;
+	}
+
+	@keyframes blur {
+		from{
+			filter: blur(0px);
+		}
+		to {
+			filter: blur(2px)
+		}
+	}
+
+	ul li img:hover{
+		animation: blur .85s 1;
+	}
+</style>
