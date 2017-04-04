@@ -1,0 +1,23 @@
+<img class='time' src="time-square.jpg">
+
+<style>
+
+.time{
+	animation: grayFade 4s infinite;
+}
+	@keyframes grayFade {
+		0%{
+			filter: grayscale(0%);
+		}
+		85%{
+			filter: grayscale(100%);
+		}
+		100%{
+			filter: grayscale(0%);
+		}
+	}
+
+	img{
+		max-width: 100%;
+	}
+</style>
