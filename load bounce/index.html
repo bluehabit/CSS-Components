@@ -1,0 +1,104 @@
+<div class='container'>
+  <div>L</div>
+  <div>o</div>
+  <div>a</div>
+  <div>d</div>
+  <div>i</div>
+  <div>n</div>
+  <div>g</div>
+</div>
+
+
+<style>
+	@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+	body {
+	  font-family: 'Roboto Slab', serif;
+	}
+
+	.container {
+	  width: 50%;
+	  margin: 0 auto;
+	  margin-top: 15%;
+	}
+
+	.container div {
+	  background-color: #333;
+	  padding: 15px;
+	  width: 5%;
+	  display: inline-block;
+	  padding-top: 50px;
+	  color: white;
+	  border-bottom: 5px solid #fa0a7b;
+	  font-size: 1.2em;
+	}
+
+	.container div:nth-child(even){
+	   color: #c5c0c3;
+	}
+
+	.container div:nth-child(1){
+	   animation: levitate 2s infinite;
+	   animation-delay: .1s;
+	   animation-direction: alternate;
+	}
+
+	.container div:nth-child(2){
+	   animation: levitate 2s infinite;
+	   animation-delay: .25s;
+	   animation-direction: alternate;
+	}
+
+	.container div:nth-child(3){
+	   animation: levitate 2s infinite;
+	   animation-delay: .35s;
+	   animation-direction: alternate;
+	}
+
+	.container div:nth-child(4){
+	   animation: levitate 2s infinite;
+	   animation-delay: .45s;
+	   animation-direction: alternate;
+	}
+
+	.container div:nth-child(5){
+	   animation: levitate 2s infinite;
+	   animation-delay: .55s;
+	   animation-direction: alternate;
+	}
+
+	.container div:nth-child(6){
+	   animation: levitate 2s infinite;
+	   animation-delay: .65s;
+	   animation-direction: alternate;
+	}
+
+	.container div:nth-child(7){
+	   animation: levitate 2s infinite;
+	   animation-delay: .75s;
+	   animation-direction: alternate;
+	}
+
+		 
+
+	@keyframes levitate {
+	  0%{
+	    transform: translateY(0px)
+	   	filter: blur(.2px);
+	  }
+	 15%{
+	  	filter: blur(.35px);
+	  }
+	 25%{
+	 	filter: blur(0px);
+	 }
+
+	 75%{
+	    transform: translateY(-35px)
+	  }
+	 100%{
+	  	transform: translateY(-35px)
+	  }
+	}
+
+</style>
