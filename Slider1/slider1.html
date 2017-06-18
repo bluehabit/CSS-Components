@@ -1,0 +1,124 @@
+<div class="wrap">
+  <div class="wrap2">
+
+    <div class="group">
+      <input type="radio" name="test" id="0" value="0">
+      <label for="4" class="previous">&lt;</label>
+      <label for="1" class="next">&gt;</label>
+      <div class="content">
+        <p>panel #0</p>
+        <img src="http://i.stack.imgur.com/R5yzx.jpg" width="200" height="286">
+      </div>
+    </div>
+
+    <div class="group">
+      <input type="radio" name="test" id="1" value="1">
+      <label for="0" class="previous">&lt;</label>
+      <label for="2" class="next">&gt;</label>
+      <div class="content">
+        <p>panel #1</p>
+        <img src="http://i.stack.imgur.com/k0Hsd.jpg" width="200" height="139">
+      </div>
+    </div>
+
+    <div class="group">
+      <input type="radio" name="test" id="2" value="2">
+      <label for="1" class="previous">&lt;</label>
+      <label for="3" class="next">&gt;</label>
+      <div class="content">
+        <p>panel #2</p>
+        <img src="http://i.stack.imgur.com/Hhl9H.jpg" width="140" height="200">
+      </div>
+    </div>
+
+    <div class="group">
+      <input type="radio" name="test" id="3" value="3" checked="">
+      <label for="2" class="previous">&lt;</label>
+      <label for="4" class="next">&gt;</label>
+      <div class="content">
+        <p>panel #3</p>
+        <img src="http://i.stack.imgur.com/r1AyN.jpg" width="200" height="287">
+      </div>
+    </div>
+
+    <div class="group">
+      <input type="radio" name="test" id="4" value="4">
+      <label for="3" class="previous">&lt;</label>
+      <label for="0" class="next">&gt;</label>
+      <div class="content">
+        <p>panel #4</p>
+        <img src="http://i.stack.imgur.com/EHHsa.jpg" width="96" height="139">
+      </div>    
+    </div>
+
+  </div>
+</div>
+
+<style>
+
+  div.wrap2 {
+    float: left;
+    height: 500px;
+    width: 422px;
+  }
+
+  div.group input {
+    display: none;
+    left: -100%;
+    position: absolute;
+    top: -100%;
+  }
+
+  div.group input ~ div.content {
+    border: solid 1px black;
+    display: none;
+    height: 350px;
+    margin: 0px 60px;
+    position: relative;
+    width: 300px;
+  }
+
+  div.group input:checked ~ div.content {
+    display: block;
+  }
+
+  div.group input:checked ~ label.previous,
+  div.group input:checked ~ label.next {
+    display: block;
+  }
+
+  div.group label {
+    background-color: #69c;
+    border: solid 1px black;
+    display: none;
+    height: 50px;
+    width: 50px;
+  }
+
+  img {
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  label {
+    font-size: 4em;
+    margin: 125px 0 0 0;
+  }
+
+  label.previous {
+    float: left;
+    padding: 0 0 30px 5px;
+  }
+  
+  label.next {
+    float: right;
+    padding: 0 5px 25px 0;
+    text-align: right;
+  }
+</style>
