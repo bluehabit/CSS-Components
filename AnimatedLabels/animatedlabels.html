@@ -1,0 +1,80 @@
+<div class='labelContainer'>
+	<input id="name" name="name" type="text" required>
+	<label for="name">Your Name</label>
+</div>
+
+<style>
+
+/*https://css-tricks.com/float-labels-css/*/
+
+div {
+	margin-top: 10%;
+}
+
+div {
+	position: relative;
+}
+
+div > label {
+	position: absolute;
+	top: -1px;
+
+}
+
+input {
+    width: 18%;
+    padding-bottom: 2px;
+    border: 0;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    outline: 0;
+    color: rgba(0,0,0,.87);
+    -webkit-appearance: none;
+    transition: all .65s ease;
+}
+
+label {
+  transition: all .45s ease;
+  display: block;
+  color: #e4e7eb;
+  font-weight: 300;
+  opacity: .85;
+  font-size: 18px;
+}
+
+input:focus {
+	border-bottom: 2px solid rgba(232, 33, 127, .95);
+}
+
+input:focus + label {
+	transform: translateY(-31px);
+	color: #e8217f;
+	opacity: 1;
+	font-size: 1.3em;
+	animation: motionBlur .15s ease 1;
+}
+
+input:valid + label{
+	transform: translateY(-31px);
+}
+
+ @keyframes motionBlur {
+        0% {
+
+        }
+
+        5% {
+            filter: blur(1.5px);
+        }
+
+        80% {
+            filter: blur(1.5px);
+        }
+
+        100% {
+            filter: blur(0px);
+        }
+    }
+
+ </style>
+
+
