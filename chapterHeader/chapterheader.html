@@ -1,5 +1,5 @@
-<div class="skills-title"><h1>Skills
-<span>.</span>
+<div class="skills-title"><h1 data-letter='S'>Skills
+<span></span>
 </h1>
 </div>
 
@@ -17,12 +17,12 @@
 
 .skills-title h1:after {
     position: absolute;
+    content: attr(data-letter);
     top: -3.6rem;
     right: 0;
     color: #f1f1f1;
     font-size: 10rem;
     font-weight: 900;
-    content: 'S';
     z-index: -1;
 }
 </style>
