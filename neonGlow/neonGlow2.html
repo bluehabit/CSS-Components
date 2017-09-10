@@ -1,0 +1,29 @@
+<p>Neon Glow</p>
+
+<style>
+body {
+  background-color: #222222;
+  background: repeating-linear-gradient(45deg, #2b2b2b 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 15px 15px;
+}
+
+p {
+  text-align: center;
+  font-size: 7em;
+  margin: 20px 0 20px 0;
+  font-family: Monoton;
+  color: white;
+  animation: neon1 1.5s ease-in-out infinite alternate;
+}
+
+
+
+@keyframes neon1 {
+	from {
+		text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ef1586, 0 0 75px #ef1586, 0 0 150px #ef1586;
+	}
+
+	to {
+		text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ef1586, 0 0 32px #ef1586, 0 0 75px #ef1586;
+	}
+}
+</style>
