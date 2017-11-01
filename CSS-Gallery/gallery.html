@@ -1,0 +1,90 @@
+<h2>Framework: CSS Only Carousel</h2>
+
+<div>
+	<input type='radio' id='1' name='purple' checked='true'>
+	<label for='3'>&lt;</label>
+	<label for='2'>&gt;</label>
+	
+	<div class='content'>
+		<img src="http://i.stack.imgur.com/R5yzx.jpg">
+		<p>image 1</p>
+	</div>
+
+	<ul>
+		<li class='active'>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+<div>
+
+<div>
+	<input type="radio" id='2' name="purple">
+	<label for='1'>&lt;</label>
+	<label for='3'>&gt;</label>
+
+	<div class='content'>
+		<img src="http://i.stack.imgur.com/k0Hsd.jpg">
+		<p>image 2</p>
+	</div>
+</div>
+
+<div>
+	<input type="radio" id='3' name="purple">
+	<label for='2'>&lt;</label>
+	<label for='1'>&gt;</label>
+
+	<div class='content'>
+		<img src="http://i.stack.imgur.com/Hhl9H.jpg">
+		<p>image 3</p>
+	</div>
+</div>
+
+<style>
+	label {
+		background-color: blue;
+		padding: 5px;
+		cursor: pointer;
+		display: none;
+		margin-bottom: 5px;
+		width: 30%;
+		color: white;
+		font-weight: 800;
+	}
+
+	input {
+		display: none;
+	}
+
+	.content {
+		display: none;
+	}
+
+	input:checked ~ div.content {
+		display: block;
+	}
+	
+	input:checked ~ label {
+		display: block;
+	}
+
+	ul li {
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+		background-color: blue;
+		margin-bottom: 15px;
+		display: inline-block;
+	}
+
+	ul li.active {
+		background-color: red;
+	}
+
+</style>
+
+
+<!-- &lt &gt -->
+
+
+<!-- http://i.stack.imgur.com/k0Hsd.jpg
+http://i.stack.imgur.com/Hhl9H.jpg -->
